@@ -6,10 +6,10 @@ export './src/config/api_config.dart';
 export './src/config/api_versioning_endpoints.dart';
 export './src/service/api_versioning_service.dart';
 export './src/defaults/mock_api_versioning_service.dart';
+export './src/util/version.dart';
 
 // Class imports
 import 'package:lr_app_versioning/src/defaults/default_api_versioning_service.dart';
-import 'package:lr_app_versioning/src/defaults/mock_api_versioning_service.dart';
 import 'package:lr_app_versioning/src/lr_app_versioning.dart';
 import 'package:lr_app_versioning/src/service/api_versioning_service.dart';
 import 'package:meta/meta.dart';

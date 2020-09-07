@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
+import 'package:package_info/package_info.dart';
 
 import 'service_provider.dart';
 
@@ -53,12 +57,29 @@ class _HomeState extends State<Home> {
       isLoading = true;
     });
 
+    // Get Api Versioning
     final apiVersioning = await widget.appVersioning.getApiVersioning();
     setState(() {
-      minIosVersion = apiVersioning.minimumIosVersion;
-      minAndroidVersion = apiVersioning.minimumAndroidVersion;
+      minIosVersion = apiVersioning.minimumIosVersionString;
+      minAndroidVersion = apiVersioning.minimumAndroidVersionString;
       isLoading = false;
     });
+    // Check Update is needed
+    final packageInfo = await PackageInfo.fromPlatform();
+    final currentVersionString = packageInfo.version;
+    final currentVersion = Version.tryParse(currentVersionString);
+    if (Platform.isIOS) {
+      if (apiVersioning.minimumIosVersion == null || currentVersion == null) return;
+      if (apiVersioning.minimumIosVersion > currentVersion) _showUpdatePopup();
+    } else {
+      if (apiVersioning.minimumAndroidVersion == null || currentVersion == null) return;
+      if (apiVersioning.minimumAndroidVersion > currentVersion) _showUpdatePopup();
+    }
+  }
+
+  _showUpdatePopup() {
+    // TODO
+    showDialog(context: context, child: Text("Update required!"));
   }
 
   @override

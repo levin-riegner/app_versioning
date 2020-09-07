@@ -6,7 +6,7 @@ L+R app versioning package
 
 Run `flutter pub upgrade && flutter pub get` to get the project dependencies.
 
-Run `flutter pub run build_runner build --delete-conflicting-outputs` to generate any missing files.
+Run the `Example` project to test the app.
 
 This project is a starting point for a Dart
 [package](https://flutter.dev/developing-packages/),

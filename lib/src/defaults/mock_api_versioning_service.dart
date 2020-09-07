@@ -14,8 +14,8 @@ class MockApiVersioningService extends ApiVersioningService {
   @override
   Future<ApiVersioning> getApiVersioning() async {
     return Future.value(ApiVersioning(
-      minimumIosVersion: minimumIosVersion,
-      minimumAndroidVersion: minimumAndroidVersion,
+      minimumIosVersionString: minimumIosVersion,
+      minimumAndroidVersionString: minimumAndroidVersion,
     ));
   }
 }

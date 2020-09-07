@@ -19,7 +19,13 @@ void main() {
     final apiVersioning = await appVersioning.getApiVersioning();
 
     // Check min Versions in response
-    expect(apiVersioning.minimumIosVersion, minimumIosVersion);
-    expect(apiVersioning.minimumAndroidVersion, minimumAndroidVersion);
+    expect(apiVersioning.minimumIosVersionString, minimumIosVersion);
+    expect(apiVersioning.minimumAndroidVersionString, minimumAndroidVersion);
+    expect(apiVersioning.minimumIosVersion.major, 1);
+    expect(apiVersioning.minimumIosVersion.minor, 0);
+    expect(apiVersioning.minimumIosVersion.patch, 0);
+    expect(apiVersioning.minimumAndroidVersion.major, 1);
+    expect(apiVersioning.minimumAndroidVersion.minor, 0);
+    expect(apiVersioning.minimumAndroidVersion.patch, 0);
   });
 }
