@@ -31,7 +31,6 @@ dependencies:
 
   lr_app_versioning:
     path: ../
-  package_info: ^0.4.3
 
 dev_dependencies:
   flutter_test:

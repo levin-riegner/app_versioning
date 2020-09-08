@@ -2,30 +2,53 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
 
 void main() {
-  test('Test Api Versioning', () async {
+  test('Update Required', () async {
     // Init Test Values
-    final String minimumIosVersion = "1.0.0";
-    final String minimumAndroidVersion = "1.0.0";
+    final Version minimumApiVersion = Version.parse("1.2.3");
+    final Version currentAppVersion = Version.parse("1.0.0");
 
     // Setup Mock Service
     final appVersioning = AppVersioning(
       apiVersioningService: MockApiVersioningService(
-        minimumIosVersion: minimumIosVersion,
-        minimumAndroidVersion: minimumAndroidVersion,
+        minimumIosVersion: minimumApiVersion.toString(),
+        minimumAndroidVersion: minimumApiVersion.toString(),
+      ),
+      appUpdateService: MockAppUpdateService(
+        currentVersionString: currentAppVersion.toString(),
       ),
     );
 
-    // Request apiVersioning
-    final apiVersioning = await appVersioning.getApiVersioning();
+    // Get Min Api Version
+    final minApiVersion = await appVersioning.getMinimumApiVersion();
+    expect(minApiVersion, minimumApiVersion);
 
-    // Check min Versions in response
-    expect(apiVersioning.minimumIosVersionString, minimumIosVersion);
-    expect(apiVersioning.minimumAndroidVersionString, minimumAndroidVersion);
-    expect(apiVersioning.minimumIosVersion.major, 1);
-    expect(apiVersioning.minimumIosVersion.minor, 0);
-    expect(apiVersioning.minimumIosVersion.patch, 0);
-    expect(apiVersioning.minimumAndroidVersion.major, 1);
-    expect(apiVersioning.minimumAndroidVersion.minor, 0);
-    expect(apiVersioning.minimumAndroidVersion.patch, 0);
+    // Get Current Version
+    final currentVersion = await appVersioning.getCurrentAppVersion();
+    expect(currentVersion, currentAppVersion);
+
+    // Assert update is required
+    final isUpdateRequired = await appVersioning.isUpdateRequired();
+    expect(isUpdateRequired, true);
+  });
+
+  test('No Update Required', () async {
+    // Init Test Values
+    final Version minimumApiVersion = Version.parse("0.0.0");
+    final Version currentAppVersion = Version.parse("1.0.0");
+
+    // Setup Mock Service
+    final appVersioning = AppVersioning(
+      apiVersioningService: MockApiVersioningService(
+        minimumIosVersion: minimumApiVersion.toString(),
+        minimumAndroidVersion: minimumApiVersion.toString(),
+      ),
+      appUpdateService: MockAppUpdateService(
+        currentVersionString: currentAppVersion.toString(),
+      ),
+    );
+
+    // Assert update is required
+    final isUpdateRequired = await appVersioning.isUpdateRequired();
+    expect(isUpdateRequired, false);
   });
 }

@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:package_info/package_info.dart';
 
 import 'service_provider.dart';
 
@@ -38,8 +35,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String minIosVersion;
-  String minAndroidVersion;
+  String minAppVersion;
+  String currentAppVersion;
 
   bool isLoading = false;
 
@@ -50,36 +47,50 @@ class _HomeState extends State<Home> {
   }
 
   void _getApiVersioning() async {
-    minIosVersion = null;
-    minAndroidVersion = null;
+    minAppVersion = null;
+    currentAppVersion = null;
 
     setState(() {
       isLoading = true;
     });
 
-    // Get Api Versioning
-    final apiVersioning = await widget.appVersioning.getApiVersioning();
+    // Get Api Versioning (just to show on screen)
+    final apiVersioning = await widget.appVersioning.getMinimumApiVersion();
     setState(() {
-      minIosVersion = apiVersioning.minimumIosVersionString;
-      minAndroidVersion = apiVersioning.minimumAndroidVersionString;
+      minAppVersion = apiVersioning.toString();
       isLoading = false;
     });
-    // Check Update is needed
-    final packageInfo = await PackageInfo.fromPlatform();
-    final currentVersionString = packageInfo.version;
-    final currentVersion = Version.tryParse(currentVersionString);
-    if (Platform.isIOS) {
-      if (apiVersioning.minimumIosVersion == null || currentVersion == null) return;
-      if (apiVersioning.minimumIosVersion > currentVersion) _showUpdatePopup();
-    } else {
-      if (apiVersioning.minimumAndroidVersion == null || currentVersion == null) return;
-      if (apiVersioning.minimumAndroidVersion > currentVersion) _showUpdatePopup();
+
+    // Get App Version (just to show on screen)
+    final appVersion = await widget.appVersioning.getCurrentAppVersion();
+    setState(() {
+      currentAppVersion = appVersion.toString();
+      isLoading = false;
+    });
+
+    // Check Update Required
+    final isUpdateRequired = await widget.appVersioning.isUpdateRequired();
+    if (isUpdateRequired) {
+      _showUpdatePopup();
     }
   }
 
   _showUpdatePopup() {
-    // TODO
-    showDialog(context: context, child: Text("Update required!"));
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      child: Container(
+        child: Column(
+          children: [
+            Text("Update required!"),
+            FlatButton(
+              onPressed: () => widget.appVersioning.launchUpdate(),
+              child: Text("OK"),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -97,10 +108,10 @@ class _HomeState extends State<Home> {
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 Text(
-                  'iOS: $minIosVersion',
+                  'Min Version: $minAppVersion',
                 ),
                 Text(
-                  'Android: $minAndroidVersion',
+                  'Current Version: $currentAppVersion',
                 ),
               ],
             ),

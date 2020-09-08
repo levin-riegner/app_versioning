@@ -6,8 +6,8 @@ class MockApiVersioningService extends ApiVersioningService {
   final String minimumAndroidVersion;
 
   MockApiVersioningService({
-    this.minimumIosVersion = "1.0.0",
-    this.minimumAndroidVersion = "1.0.0",
+    this.minimumIosVersion = "1.2.3",
+    this.minimumAndroidVersion = "1.2.3",
   });
 
   /// Get api versioning. Throws [FailedToGetApiVersioning].
