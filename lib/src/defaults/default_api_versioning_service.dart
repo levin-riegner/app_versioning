@@ -25,7 +25,7 @@ class DefaultApiVersioningService extends ApiVersioningService {
         headers: {'Accept': 'application/json'},
       );
       // Parse response
-      final json = jsonDecode(response.body.replaceAll("0.0.0", "2.0.0"));
+      final json = jsonDecode(response.body);
       final apiVersioning = ApiVersioning.fromJson(json);
       // Return api versioning
       return apiVersioning;
