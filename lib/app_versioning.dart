@@ -10,6 +10,7 @@ export './src/defaults/mock_api_versioning_service.dart';
 export './src/service/app_update_service.dart';
 export './src/defaults/mock_app_update_service.dart';
 export './src/util/version.dart';
+export './src/util/version_tracker.dart';
 
 // Class imports
 import 'package:flutter/widgets.dart';
