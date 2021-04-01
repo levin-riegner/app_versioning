@@ -3,6 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Provides an easy way to track versions and builds
 class VersionTracker {
+  VersionTracker._internal();
+
+  static final VersionTracker _instance = VersionTracker._internal();
+  static VersionTracker get instance => _instance;
+
   final String _versionsKey = "VersionTracker.Versions";
   final String _buildsKey = "VersionTracker.Builds";
 
