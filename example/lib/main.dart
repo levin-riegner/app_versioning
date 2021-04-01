@@ -79,11 +79,11 @@ class _HomeState extends State<Home> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      child: Container(
+      builder: (context) => Container(
         child: Column(
           children: [
             Text("Update required!"),
-            FlatButton(
+            TextButton(
               onPressed: () => widget.appVersioning.launchUpdate(),
               child: Text("OK"),
             )
