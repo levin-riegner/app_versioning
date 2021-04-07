@@ -9,7 +9,7 @@ import 'package:lr_core/lr_core.dart';
 class DefaultApiVersioningService extends ApiVersioningService {
   final ApiConfig config;
 
-  DefaultApiVersioningService(this.config): assert(config != null);
+  DefaultApiVersioningService(this.config);
 
   /// Get api versioning. Throws [FailedToGetApiVersioning].
   @override
@@ -21,7 +21,7 @@ class DefaultApiVersioningService extends ApiVersioningService {
     // Send request
     try {
       final response = await client.get(
-        config.endpoints.apiVersioningEndpoint,
+        Uri.parse(config.endpoints.apiVersioningEndpoint),
         headers: {'Accept': 'application/json'},
       );
       // Parse response

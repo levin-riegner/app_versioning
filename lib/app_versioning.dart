@@ -12,7 +12,6 @@ export './src/defaults/mock_app_update_service.dart';
 export './src/util/version.dart';
 
 // Class imports
-import 'package:flutter/widgets.dart';
 import 'package:lr_app_versioning/src/config/update_config.dart';
 import 'package:lr_app_versioning/src/defaults/default_api_versioning_service.dart';
 import 'package:lr_app_versioning/src/defaults/default_app_update_service.dart';
@@ -20,13 +19,12 @@ import 'package:lr_app_versioning/src/lr_app_versioning.dart';
 import 'package:lr_app_versioning/src/service/api_versioning_service.dart';
 import 'package:lr_app_versioning/src/service/app_update_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
-import 'package:meta/meta.dart';
 import 'package:lr_app_versioning/src/config/api_config.dart';
 
 abstract class AppVersioning {
-  Future<Version> getMinimumApiVersion();
+  Future<Version?> getMinimumApiVersion();
 
-  Future<Version> getCurrentAppVersion();
+  Future<Version?> getCurrentAppVersion();
 
   Future<bool> isUpdateRequired();
 
@@ -37,8 +35,8 @@ abstract class AppVersioning {
   void dispose();
 
   factory AppVersioning.defaultService({
-    @required ApiConfig apiConfig,
-    @required UpdateConfig updateConfig,
+    required ApiConfig apiConfig,
+    required UpdateConfig updateConfig,
   }) {
     return LRAppVersioning(
       apiVersioningService: DefaultApiVersioningService(apiConfig),
@@ -47,8 +45,8 @@ abstract class AppVersioning {
   }
 
   factory AppVersioning({
-    @required ApiVersioningService apiVersioningService,
-    @required AppUpdateService appUpdateService,
+    required ApiVersioningService apiVersioningService,
+    required AppUpdateService appUpdateService,
   }) {
     return LRAppVersioning(
       apiVersioningService: apiVersioningService,

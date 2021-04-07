@@ -4,5 +4,5 @@ import 'package:meta/meta.dart';
 class ApiConfig {
   final ApiVersioningEndpoints endpoints;
 
-  const ApiConfig({@required this.endpoints});
+  const ApiConfig({required this.endpoints});
 }

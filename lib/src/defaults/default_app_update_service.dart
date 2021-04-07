@@ -12,7 +12,7 @@ class DefaultAppUpdateService extends AppUpdateService {
   DefaultAppUpdateService(this.config) : assert(config != null);
 
   @override
-  Future<Version> getCurrentVersion() async {
+  Future<Version?> getCurrentVersion() async {
     final packageInfo = await PackageInfo.fromPlatform();
     final currentVersionString = packageInfo.version;
     final currentVersion = Version.tryParse(currentVersionString);

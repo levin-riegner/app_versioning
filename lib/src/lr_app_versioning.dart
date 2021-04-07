@@ -10,11 +10,9 @@ class LRAppVersioning implements AppVersioning {
   final AppUpdateService _appUpdateService;
 
   LRAppVersioning({
-    @required ApiVersioningService apiVersioningService,
-    @required AppUpdateService appUpdateService,
-  })  : assert(apiVersioningService != null),
-        assert(appUpdateService != null),
-        _apiVersioningService = apiVersioningService,
+    required ApiVersioningService apiVersioningService,
+    required AppUpdateService appUpdateService,
+  })   : _apiVersioningService = apiVersioningService,
         _appUpdateService = appUpdateService;
 
   @override
@@ -30,7 +28,7 @@ class LRAppVersioning implements AppVersioning {
   }
 
   @override
-  Future<Version> getCurrentAppVersion() {
+  Future<Version?> getCurrentAppVersion() {
     return _appUpdateService.getCurrentVersion();
   }
 
