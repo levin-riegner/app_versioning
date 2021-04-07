@@ -137,7 +137,7 @@ class Version implements Comparable<Version> {
       throw FormatException("Cannot parse empty string into version");
     }
     if (!_versionRegex.hasMatch(versionString)) {
-      throw FormatException("Not a properly formatted version string");
+      throw FormatException("Not a properly formatted version string: $versionString");
     }
     final Match? m = _versionRegex.firstMatch(versionString);
     if (m == null)
