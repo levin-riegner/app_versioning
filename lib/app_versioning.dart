@@ -7,6 +7,8 @@ import 'package:lr_app_versioning/src/api/service/default_api_versioning_service
 import 'package:lr_app_versioning/src/default_app_versioning.dart';
 import 'package:lr_app_versioning/src/device/config/update_config.dart';
 import 'package:lr_app_versioning/src/device/service/default_device_versioning_service.dart';
+import 'package:lr_app_versioning/src/firebase/config/remote_config_keys.dart';
+import 'package:lr_app_versioning/src/firebase/service/default_firebase_versioning_service.dart';
 import 'package:lr_app_versioning/src/model/app_update_info.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
@@ -38,6 +40,16 @@ abstract class AppVersioning {
   }) {
     return DefaultAppVersioning(
       minimumVersioningService: DefaultApiVersioningService(apiConfig),
+      appUpdateService: DefaultDeviceVersioningService(updateConfig),
+    );
+  }
+
+  factory AppVersioning.firebaseService({
+    required RemoteConfigKeys remoteConfigKeys,
+    required UpdateConfig updateConfig,
+  }) {
+    return DefaultAppVersioning(
+      minimumVersioningService: DefaultFirebaseVersioningService(remoteConfigKeys),
       appUpdateService: DefaultDeviceVersioningService(updateConfig),
     );
   }

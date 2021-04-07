@@ -1,14 +1,13 @@
 import 'package:lr_core/lr_core.dart';
 
 class ApiVersioningEndpoints extends ApiEndpoints {
-  // Example: "api/api-compatibility"
   final String _minimumVersioningEndpoint;
 
   /// Default endpoints can be overridden by passing custom endpoints
   ApiVersioningEndpoints(
     String baseUrl, {
-    required String minimumVersioningEndpoint,
-  })   : _minimumVersioningEndpoint = minimumVersioningEndpoint,
+    String minimumVersioningEndpoint = "api/api-compatibility",
+  })  : _minimumVersioningEndpoint = minimumVersioningEndpoint,
         super(baseUrl);
 
   String get minimumVersioningEndpoint =>

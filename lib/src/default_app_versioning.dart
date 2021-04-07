@@ -32,13 +32,16 @@ class DefaultAppVersioning implements AppVersioning {
       // Update required if minimum version is bigger than current
       return AppUpdateInfo(
         currentVersion: currentVersion,
+        minimumVersion: minimumVersion,
         isUpdateAvailable: minimumVersion > currentVersion,
         updateType: AppUpdateType.Mandatory,
       );
-    } on FailedToGetCurrentVersion {
+    } on FailedToGetCurrentVersion catch (e) {
       print("Failed to get current app Version");
+      print(e);
       return AppUpdateInfo(
         currentVersion: null,
+        minimumVersion: null,
         isUpdateAvailable: false,
         updateType: null,
       );
@@ -65,8 +68,9 @@ class DefaultAppVersioning implements AppVersioning {
       } else {
         return minimumVersions.android;
       }
-    } on FailedToGetMinimumVersions {
+    } on FailedToGetMinimumVersions catch (e) {
       print("Failed to get Minimum Version");
+      print(e);
       return Version.parse("0.0.0");
     }
   }

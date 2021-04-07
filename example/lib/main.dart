@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
@@ -28,14 +30,14 @@ class MyApp extends StatelessWidget {
 class Home extends StatefulWidget {
   final AppVersioning appVersioning;
 
-  const Home({Key? key, required this.appVersioning}) : super(key: key);
+  const Home({Key key, @required this.appVersioning}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  AppUpdateInfo? appUpdateInfo;
+  AppUpdateInfo appUpdateInfo;
 
   bool isLoading = false;
 
@@ -99,6 +101,9 @@ class _HomeState extends State<Home> {
                 ),
                 Text(
                   'Current Version: ${appUpdateInfo?.currentVersion}',
+                ),
+                Text(
+                  'Minimum Version: ${appUpdateInfo?.minimumVersion}',
                 ),
                 Text(
                   'Update Available: ${appUpdateInfo?.isUpdateAvailable}',
