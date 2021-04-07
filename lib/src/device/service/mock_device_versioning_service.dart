@@ -1,12 +1,10 @@
-
-import 'package:lr_app_versioning/src/service/app_update_service.dart';
+import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
 
-
-class MockAppUpdateService extends AppUpdateService {
+class MockDeviceVersioningService extends DeviceVersioningService {
   final String currentVersionString;
 
-  MockAppUpdateService({
+  MockDeviceVersioningService({
     this.currentVersionString = "1.2.3",
   });
 

@@ -2,14 +2,17 @@ import 'package:lr_app_versioning/app_versioning.dart';
 
 abstract class ServiceProvider {
   static AppVersioning get appVersioning {
-    return AppVersioning.defaultService(
+    return AppVersioning.apiService(
       apiConfig: ApiConfig(
-        endpoints: ApiVersioningEndpoints("https://api-staging.avenew.org"),
+        endpoints: ApiVersioningEndpoints(
+          "https://api-staging.avenew.org",
+          minimumVersioningEndpoint: "api/api-compatibility",
+        ),
       ),
       updateConfig: UpdateConfig(
-        appStoreAppId: "1529797327",
-        playStoreAppId: "org.avenew.activist",
-      )
+        appStoreAppId: "1234567890",
+        playStoreAppId: "org.example.versioning",
+      ),
     );
   }
 }
