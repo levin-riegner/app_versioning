@@ -16,7 +16,8 @@ class DefaultFirebaseVersioningService extends MinimumVersioningService {
     final RemoteConfig remoteConfig = await RemoteConfig.instance;
     // Fetch and Activate configs
     try {
-      await remoteConfig.fetchAndActivate();
+      await remoteConfig.fetch();
+      await remoteConfig.activateFetched();
       // Get Version String
       final iosVersionString =
           remoteConfig.getString(remoteConfigKeys.minimumIosVersionKey);
