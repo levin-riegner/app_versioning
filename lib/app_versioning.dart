@@ -13,13 +13,15 @@ import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
 
 // Library Export Classes
-export './src/api/exports.dart';
-export './src/device/exports.dart';
-export './src/model/app_update_info.dart';
-export './src/model/exceptions.dart';
-export './src/service/device_versioning_service.dart';
-export './src/service/minimum_versioning_service.dart';
-export './src/util/version.dart';
+export 'src/api/exports.dart';
+export 'src/device/exports.dart';
+export 'src/firebase/exports.dart';
+export 'src/model/app_update_info.dart';
+export 'src/model/exceptions.dart';
+export 'src/model/minimum_versions.dart';
+export 'src/service/device_versioning_service.dart';
+export 'src/service/minimum_versioning_service.dart';
+export 'src/util/version.dart';
 
 abstract class AppVersioning {
   Future<Version> getCurrentAppVersion();

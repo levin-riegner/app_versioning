@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:lr_app_versioning/app_versioning.dart';
 import 'package:lr_app_versioning/src/device/config/update_config.dart';
-import 'package:lr_app_versioning/src/device/model/exceptions.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
 import 'package:package_info/package_info.dart';

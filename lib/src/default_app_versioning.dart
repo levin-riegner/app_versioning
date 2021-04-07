@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:lr_app_versioning/src/api/model/exceptions.dart';
-import 'package:lr_app_versioning/src/device/model/exceptions.dart';
 import 'package:lr_app_versioning/src/model/app_update_info.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
@@ -59,15 +57,15 @@ class DefaultAppVersioning implements AppVersioning {
   Future<Version> _getMinimumVersion() async {
     // Get Minimum Versioning
     try {
-      final minimumVersioning =
-          await _minimumVersioningService.getMinimumVersioning();
+      final minimumVersions =
+          await _minimumVersioningService.getMinimumVersions();
       // Check Version by platform
       if (Platform.isIOS) {
-        return minimumVersioning.minimumIosVersion;
+        return minimumVersions.ios;
       } else {
-        return minimumVersioning.minimumAndroidVersion;
+        return minimumVersions.android;
       }
-    } on FailedToGetMinimumVersioning {
+    } on FailedToGetMinimumVersions {
       print("Failed to get Minimum Version");
       return Version.parse("0.0.0");
     }

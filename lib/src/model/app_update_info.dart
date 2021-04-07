@@ -17,6 +17,4 @@ class AppUpdateInfo {
   }
 }
 
-enum AppUpdateType {
-  Optional, Mandatory
-}
+enum AppUpdateType { Optional, Mandatory }

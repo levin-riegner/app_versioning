@@ -1,5 +1,5 @@
-import 'package:lr_app_versioning/src/api/model/minimum_versioning.dart';
+import 'package:lr_app_versioning/src/model/minimum_versions.dart';
 
 abstract class MinimumVersioningService {
-  Future<MinimumVersioning> getMinimumVersioning();
+  Future<MinimumVersions> getMinimumVersions();
 }

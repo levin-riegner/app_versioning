@@ -8,10 +8,11 @@ class ApiVersioningEndpoints extends ApiEndpoints {
   ApiVersioningEndpoints(
     String baseUrl, {
     required String minimumVersioningEndpoint,
-  })  : _minimumVersioningEndpoint = minimumVersioningEndpoint,
+  })   : _minimumVersioningEndpoint = minimumVersioningEndpoint,
         super(baseUrl);
 
-  String get minimumVersioningEndpoint => url(endpoint: _minimumVersioningEndpoint);
+  String get minimumVersioningEndpoint =>
+      url(endpoint: _minimumVersioningEndpoint);
 
   @override
   String toString() {

@@ -1,10 +1,10 @@
 import 'package:lr_app_versioning/src/util/version.dart';
 
-class MinimumVersioning {
+class ApiVersioning {
   final String? minimumIosVersionString;
   final String? minimumAndroidVersionString;
 
-  const MinimumVersioning({
+  const ApiVersioning({
     this.minimumIosVersionString,
     this.minimumAndroidVersionString,
   });
@@ -15,8 +15,8 @@ class MinimumVersioning {
   Version get minimumAndroidVersion =>
       Version.tryParse(minimumAndroidVersionString) ?? Version.parse("0.0.0");
 
-  factory MinimumVersioning.fromJson(Map<String, dynamic> map) {
-    return new MinimumVersioning(
+  factory ApiVersioning.fromJson(Map<String, dynamic> map) {
+    return new ApiVersioning(
       minimumIosVersionString: map['minimumIosVersion'] as String?,
       minimumAndroidVersionString: map['minimumAndroidVersion'] as String?,
     );
