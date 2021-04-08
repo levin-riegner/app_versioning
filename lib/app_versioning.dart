@@ -24,6 +24,7 @@ export 'src/model/minimum_versions.dart';
 export 'src/service/device_versioning_service.dart';
 export 'src/service/minimum_versioning_service.dart';
 export 'src/util/version.dart';
+export 'src/util/version_tracker.dart';
 
 abstract class AppVersioning {
   Future<Version> getCurrentAppVersion();
