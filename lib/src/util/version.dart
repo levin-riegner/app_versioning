@@ -6,7 +6,7 @@
 /// Provides immutable storage and comparison of semantic version numbers.
 class Version implements Comparable<Version> {
   static final RegExp _versionRegex =
-  RegExp(r"^([\d.]+)(-([0-9A-Za-z\-.]+))?(\+([0-9A-Za-z\-.]+))?$");
+      RegExp(r"^([\d.]+)(-([0-9A-Za-z\-.]+))?(\+([0-9A-Za-z\-.]+))?$");
   static final RegExp _buildRegex = RegExp(r"^[0-9A-Za-z\-.]+$");
   static final RegExp _preReleaseRegex = RegExp(r"^[0-9A-Za-z\-]+$");
 
@@ -34,14 +34,8 @@ class Version implements Comparable<Version> {
   Version(this.major, this.minor, this.patch,
       {List<String> preRelease = const <String>[], this.build = ""})
       : _preRelease = preRelease {
-    if (this.major == null) throw ArgumentError("major must not be null");
-    if (this.minor == null) throw ArgumentError("minor must not be null");
-    if (this.patch == null) throw ArgumentError("patch must not be null");
-    if (this._preRelease == null) {
-      throw ArgumentError("preRelease must not be null");
-    }
     for (int i = 0; i < _preRelease.length; i++) {
-      if (_preRelease[i] == null || _preRelease[i].toString().trim().isEmpty) {
+      if (_preRelease[i].toString().trim().isEmpty) {
         throw ArgumentError("preRelease segments must not be null or empty");
       }
       // Just in case
@@ -51,7 +45,6 @@ class Version implements Comparable<Version> {
             "preRelease segments must only contain [0-9A-Za-z-]");
       }
     }
-    if (this.build == null) throw ArgumentError("build must not be null");
     if (this.build.isNotEmpty && !_buildRegex.hasMatch(this.build)) {
       throw FormatException("build must only contain [0-9A-Za-z-.]");
     }
@@ -85,10 +78,6 @@ class Version implements Comparable<Version> {
 
   @override
   int compareTo(Version other) {
-    if (other == null) {
-      throw ArgumentError.notNull("other");
-    }
-
     return _compare(this, other);
   }
 
@@ -120,7 +109,7 @@ class Version implements Comparable<Version> {
     if (_preRelease.isNotEmpty) {
       output.write("-${_preRelease.join('.')}");
     }
-    if (build != null && build.trim().isNotEmpty) {
+    if (build.trim().isNotEmpty) {
       output.write("+${build.trim()}");
     }
     return output.toString();
@@ -130,8 +119,9 @@ class Version implements Comparable<Version> {
   ///
   /// The string must conform to the specification at http://semver.org/
   /// Returns null if the string is empty or does not conform to the spec.
-  static Version tryParse(String versionString) {
+  static Version? tryParse(String? versionString) {
     try {
+      if (versionString == null) return null;
       return parse(versionString);
     } catch (e) {
       return null;
@@ -143,16 +133,21 @@ class Version implements Comparable<Version> {
   /// The string must conform to the specification at http://semver.org/
   /// Throws [FormatException] if the string is empty or does not conform to the spec.
   static Version parse(String versionString) {
-    if (versionString?.trim()?.isEmpty ?? true) {
+    if (versionString.trim().isEmpty) {
       throw FormatException("Cannot parse empty string into version");
     }
     if (!_versionRegex.hasMatch(versionString)) {
-      throw FormatException("Not a properly formatted version string");
+      throw FormatException("Not a properly formatted version string: $versionString");
     }
-    final Match m = _versionRegex.firstMatch(versionString);
-    final String version = m.group(1);
+    final Match? m = _versionRegex.firstMatch(versionString);
+    if (m == null)
+      throw FormatException("Cannot match versionString $versionString regex");
+    final String? version = m.group(1);
+    if (version == null)
+      throw FormatException("Cannot parse versionString $versionString regex");
 
-    int major, minor, patch;
+    int major;
+    int? minor, patch;
     final List<String> parts = version.split(".");
     major = int.parse(parts[0]);
     if (parts.length > 1) {
@@ -169,19 +164,11 @@ class Version implements Comparable<Version> {
     }
     final String build = m.group(5) ?? "";
 
-    return Version(major ?? 0, minor ?? 0, patch ?? 0,
+    return Version(major, minor ?? 0, patch ?? 0,
         build: build, preRelease: preReleaseList);
   }
 
   static int _compare(Version a, Version b) {
-    if (a == null) {
-      throw ArgumentError.notNull("a");
-    }
-
-    if (b == null) {
-      throw ArgumentError.notNull("b");
-    }
-
     if (a.major > b.major) return 1;
     if (a.major < b.major) return -1;
 
@@ -238,9 +225,6 @@ class Version implements Comparable<Version> {
   }
 
   static bool _isNumeric(String s) {
-    if (s == null) {
-      return false;
-    }
     return double.tryParse(s) != null;
   }
 }

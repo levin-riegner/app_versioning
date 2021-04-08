@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
@@ -28,48 +30,38 @@ class MyApp extends StatelessWidget {
 class Home extends StatefulWidget {
   final AppVersioning appVersioning;
 
-  const Home({Key key, this.appVersioning}) : super(key: key);
+  const Home({Key key, @required this.appVersioning}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  String minAppVersion;
-  String currentAppVersion;
+  AppUpdateInfo appUpdateInfo;
 
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _getApiVersioning();
+    _getAppVersioning();
   }
 
-  void _getApiVersioning() async {
-    minAppVersion = null;
-    currentAppVersion = null;
-
+  void _getAppVersioning() async {
     setState(() {
       isLoading = true;
     });
 
     // Get Api Versioning (just to show on screen)
-    final apiVersioning = await widget.appVersioning.getMinimumApiVersion();
+    final appUpdateInfo = await widget.appVersioning.getAppUpdateInfo();
     setState(() {
-      minAppVersion = apiVersioning.toString();
-      isLoading = false;
-    });
-
-    // Get App Version (just to show on screen)
-    final appVersion = await widget.appVersioning.getCurrentAppVersion();
-    setState(() {
-      currentAppVersion = appVersion.toString();
-      isLoading = false;
+      this.appUpdateInfo = appUpdateInfo;
+      this.isLoading = false;
     });
 
     // Check Update Required
-    final isUpdateRequired = await widget.appVersioning.isUpdateRequired();
+    final isUpdateRequired = appUpdateInfo.isUpdateAvailable &&
+        appUpdateInfo.updateType == AppUpdateType.Mandatory;
     if (isUpdateRequired) {
       _showUpdatePopup();
     }
@@ -105,13 +97,19 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 Text(
                   'Current Versioning Values',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 Text(
-                  'Min Version: $minAppVersion',
+                  'Current Version: ${appUpdateInfo?.currentVersion}',
                 ),
                 Text(
-                  'Current Version: $currentAppVersion',
+                  'Minimum Version: ${appUpdateInfo?.minimumVersion}',
+                ),
+                Text(
+                  'Update Available: ${appUpdateInfo?.isUpdateAvailable}',
+                ),
+                Text(
+                  'Update Type: ${appUpdateInfo?.updateType}',
                 ),
               ],
             ),
@@ -120,7 +118,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _getApiVersioning(),
+        onPressed: () => _getAppVersioning(),
         tooltip: 'Refresh',
         child: Icon(Icons.refresh),
       ),

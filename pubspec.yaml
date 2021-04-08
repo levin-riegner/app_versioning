@@ -1,10 +1,10 @@
 name: lr_app_versioning
 description: L+R app versioning package
-version: 0.2.0
+version: 0.1.0
+publish_to: none
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
-  flutter: 2.0.3
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -14,25 +14,19 @@ dependencies:
   lr_core:
     git:
       url: git@github.com:levin-riegner/lr-core.git
-      ref: master
-
-  # JSON
-  json_serializable: ^3.3.0
+      ref: release/1.0.0
 
   # App package info
-  package_info: ^0.4.3
-  package_info_plus: 0.6.4
+  package_info: 2.0.0
   # URL Launcher
-  url_launcher: ^6.0.3
-  # Shared preferences
-  shared_preferences: 0.5.12
-  
+  url_launcher: 6.0.3
+
+  # Firebase Remote Config
+  firebase_remote_config: 0.4.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  build_runner: ^1.8.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
