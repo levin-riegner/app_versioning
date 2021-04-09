@@ -41,22 +41,36 @@ class _HomeState extends State<Home> {
 
   bool isLoading = false;
 
+  int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
-    _getAppVersioning();
+    _startVersioningServices();
   }
 
-  void _getAppVersioning() async {
+  void _startVersioningServices() async {
     setState(() {
       isLoading = true;
     });
 
+    await Future.wait(
+      [
+        _getAppVersioning(),
+        _trackVersions(),
+      ],
+    );
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Future<void> _getAppVersioning() async {
     // Get Api Versioning (just to show on screen)
     final appUpdateInfo = await widget.appVersioning.getAppUpdateInfo();
     setState(() {
       this.appUpdateInfo = appUpdateInfo;
-      this.isLoading = false;
     });
 
     // Check Update Required
@@ -65,6 +79,10 @@ class _HomeState extends State<Home> {
     if (isUpdateRequired) {
       _showUpdatePopup();
     }
+  }
+
+  Future<void> _trackVersions() async {
+    await widget.appVersioning.tracker.track();
   }
 
   _showUpdatePopup() {
@@ -89,36 +107,95 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('App Versioning Example')),
-      body: Stack(
+      body: IndexedStack(
+        index: _currentIndex,
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Current Versioning Values',
-                  style: Theme.of(context).textTheme.headline6,
+          Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Current Versioning Values',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(
+                      'Current Version: ${appUpdateInfo?.currentVersion}',
+                    ),
+                    Text(
+                      'Minimum Version: ${appUpdateInfo?.minimumVersion}',
+                    ),
+                    Text(
+                      'Update Available: ${appUpdateInfo?.isUpdateAvailable}',
+                    ),
+                    Text(
+                      'Update Type: ${appUpdateInfo?.updateType}',
+                    ),
+                  ],
                 ),
-                Text(
-                  'Current Version: ${appUpdateInfo?.currentVersion}',
+              ),
+              if (isLoading)
+                Center(
+                  child: CircularProgressIndicator(),
                 ),
-                Text(
-                  'Minimum Version: ${appUpdateInfo?.minimumVersion}',
-                ),
-                Text(
-                  'Update Available: ${appUpdateInfo?.isUpdateAvailable}',
-                ),
-                Text(
-                  'Update Type: ${appUpdateInfo?.updateType}',
-                ),
-              ],
-            ),
+            ],
           ),
-          if (isLoading) Center(child: CircularProgressIndicator()),
+          Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Version Tracking Status',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(
+                      'Is first launch ever: ${widget.appVersioning.tracker.isFirstLaunchEver}',
+                    ),
+                    Text(
+                      'Is first launch for current version: ${widget.appVersioning.tracker.isFirstLaunchForCurrentVersion}',
+                    ),
+                    Text(
+                      'Is first launch for current build: ${widget.appVersioning.tracker.isFirstLaunchForCurrentBuild}',
+                    ),
+                    Text(
+                      'Version history: ${widget.appVersioning.tracker.versionHistory}',
+                    ),
+                  ],
+                ),
+              ),
+              if (isLoading)
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+            ],
+          )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) => setState(
+          () {
+            _currentIndex = index;
+          },
+        ),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.analytics,
+            ),
+            label: "App versioning",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: "Version tracker",
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _getAppVersioning(),
+        onPressed: _startVersioningServices,
         tooltip: 'Refresh',
         child: Icon(Icons.refresh),
       ),
