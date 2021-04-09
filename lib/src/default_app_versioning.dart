@@ -5,6 +5,7 @@ import 'package:lr_app_versioning/src/model/app_update_info.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
+import 'package:lr_app_versioning/src/util/version_tracker.dart';
 
 class DefaultAppVersioning implements AppVersioning {
   final MinimumVersioningService _minimumVersioningService;
@@ -15,6 +16,9 @@ class DefaultAppVersioning implements AppVersioning {
     required DeviceVersioningService appUpdateService,
   })   : _minimumVersioningService = minimumVersioningService,
         _appUpdateService = appUpdateService;
+  
+  @override
+  VersionTracker get tracker => VersionTracker.instance;
 
   @override
   Future<Version> getCurrentAppVersion() {
