@@ -13,6 +13,7 @@ import 'package:lr_app_versioning/src/model/app_update_info.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
+import 'package:lr_app_versioning/src/util/version_tracker.dart';
 
 // Library Export Classes
 export 'src/api/exports.dart';
@@ -26,6 +27,8 @@ export 'src/service/minimum_versioning_service.dart';
 export 'src/util/version.dart';
 
 abstract class AppVersioning {
+  VersionTracker get tracker;
+
   Future<Version> getCurrentAppVersion();
 
   Future<AppUpdateInfo> getAppUpdateInfo();

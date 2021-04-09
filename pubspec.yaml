@@ -20,6 +20,8 @@ dependencies:
   package_info: 2.0.0
   # URL Launcher
   url_launcher: 6.0.3
+  # Shared Preferences
+  shared_preferences: 2.0.5
 
   # Firebase Remote Config
   firebase_remote_config: 0.4.3
