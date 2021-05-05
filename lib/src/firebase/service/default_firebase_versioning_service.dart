@@ -13,11 +13,10 @@ class DefaultFirebaseVersioningService extends MinimumVersioningService {
   /// Get api versioning. Throws [FailedToGetMinimumVersioning].
   @override
   Future<MinimumVersions> getMinimumVersions() async {
-    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+    final RemoteConfig remoteConfig = RemoteConfig.instance;
     // Fetch and Activate configs
     try {
-      await remoteConfig.fetch();
-      await remoteConfig.activateFetched();
+      await remoteConfig.fetchAndActivate();
       // Get Version String
       final iosVersionString =
           remoteConfig.getString(remoteConfigKeys.minimumIosVersionKey);

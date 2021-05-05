@@ -5,7 +5,7 @@ abstract class ServiceProvider {
     return AppVersioning.apiService(
       apiConfig: ApiConfig(
         endpoints: ApiVersioningEndpoints(
-          "https://api-staging.avenew.org",
+          "https://api.example.org",
           minimumVersioningEndpoint: "api/api-compatibility",
         ),
       ),

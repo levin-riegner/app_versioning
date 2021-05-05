@@ -1,4 +1,3 @@
-// @dart=2.9
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +29,14 @@ class MyApp extends StatelessWidget {
 class Home extends StatefulWidget {
   final AppVersioning appVersioning;
 
-  const Home({Key key, @required this.appVersioning}) : super(key: key);
+  const Home({required this.appVersioning});
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  AppUpdateInfo appUpdateInfo;
+  AppUpdateInfo? appUpdateInfo;
 
   bool isLoading = false;
 
