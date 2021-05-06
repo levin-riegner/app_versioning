@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
@@ -72,11 +71,9 @@ class _HomeState extends State<Home> {
       this.appUpdateInfo = appUpdateInfo;
     });
 
-    // Check Update Required
-    final isUpdateRequired = appUpdateInfo.isUpdateAvailable &&
-        appUpdateInfo.updateType == AppUpdateType.Mandatory;
-    if (isUpdateRequired) {
-      _showUpdatePopup();
+    // Check Update Available
+    if (appUpdateInfo.isUpdateAvailable) {
+      _showUpdatePopup(appUpdateInfo.updateType == AppUpdateType.Mandatory);
     }
   }
 
@@ -84,14 +81,14 @@ class _HomeState extends State<Home> {
     await widget.appVersioning.tracker.track();
   }
 
-  _showUpdatePopup() {
+  _showUpdatePopup(bool isMandatory) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => Container(
         child: Column(
           children: [
-            Text("Update required!"),
+            Text(isMandatory ? "Update required!" : "Optional update"),
             TextButton(
               onPressed: () => widget.appVersioning.launchUpdate(),
               child: Text("OK"),

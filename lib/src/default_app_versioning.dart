@@ -4,19 +4,23 @@ import 'package:lr_app_versioning/app_versioning.dart';
 import 'package:lr_app_versioning/src/model/app_update_info.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
+import 'package:lr_app_versioning/src/service/optional_update_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
 import 'package:lr_app_versioning/src/util/version_tracker.dart';
 
 class DefaultAppVersioning implements AppVersioning {
   final MinimumVersioningService _minimumVersioningService;
   final DeviceVersioningService _appUpdateService;
+  final OptionalUpdateService _optionalUpdateService;
 
   DefaultAppVersioning({
     required MinimumVersioningService minimumVersioningService,
     required DeviceVersioningService appUpdateService,
+    required OptionalUpdateService optionalUpdateService,
   })   : _minimumVersioningService = minimumVersioningService,
-        _appUpdateService = appUpdateService;
-  
+        _appUpdateService = appUpdateService,
+        _optionalUpdateService = optionalUpdateService;
+
   @override
   VersionTracker get tracker => VersionTracker.instance;
 
@@ -29,17 +33,29 @@ class DefaultAppVersioning implements AppVersioning {
   Future<AppUpdateInfo> getAppUpdateInfo() async {
     // Get Minimum Version
     final minimumVersion = await _getMinimumVersion();
-    // TODO: Consider retrieving current app store version for optional update
     // Get Current Versioning
     try {
       final currentVersion = await _appUpdateService.getCurrentVersion();
       // Update required if minimum version is bigger than current
-      return AppUpdateInfo(
-        currentVersion: currentVersion,
-        minimumVersion: minimumVersion,
-        isUpdateAvailable: minimumVersion > currentVersion,
-        updateType: AppUpdateType.Mandatory,
-      );
+      if (minimumVersion > currentVersion) {
+        // Has Mandatory Update
+        return AppUpdateInfo(
+          currentVersion: currentVersion,
+          minimumVersion: minimumVersion,
+          isUpdateAvailable: minimumVersion > currentVersion,
+          updateType: AppUpdateType.Mandatory,
+        );
+      } else {
+        // Check Optional Update on the stores
+        final optionalUpdateAvailable = await _optionalUpdateService
+            .isOptionalUpdateAvailable(currentVersion);
+        return AppUpdateInfo(
+          currentVersion: currentVersion,
+          minimumVersion: minimumVersion,
+          isUpdateAvailable: optionalUpdateAvailable,
+          updateType: AppUpdateType.Optional,
+        );
+      }
     } on FailedToGetCurrentVersion catch (e) {
       print("Failed to get current app Version");
       print(e);
