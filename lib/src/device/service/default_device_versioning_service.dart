@@ -28,7 +28,7 @@ class DefaultDeviceVersioningService extends DeviceVersioningService {
 
   /// Launches App Update.
   @override
-  void launchUpdate() async {
+  void launchUpdate({required bool updateInBackground}) async {
     try {
       if (config.appStoreAppId != null && Platform.isIOS) {
         // Open AppStore URL
@@ -37,8 +37,12 @@ class DefaultDeviceVersioningService extends DeviceVersioningService {
         launch(appStoreUrl);
       } else if (config.playStoreAppId != null && Platform.isAndroid) {
         // Use Android In-App Update
-        await iau.InAppUpdate.startFlexibleUpdate();
-        await iau.InAppUpdate.completeFlexibleUpdate();
+        if (updateInBackground) {
+          await iau.InAppUpdate.startFlexibleUpdate();
+          await iau.InAppUpdate.completeFlexibleUpdate();
+        } else {
+          await iau.InAppUpdate.performImmediateUpdate();
+        }
       } else {
         print("Unsupported platform or missing config parameters: $config");
       }

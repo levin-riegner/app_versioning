@@ -69,8 +69,8 @@ class DefaultAppVersioning implements AppVersioning {
   }
 
   @override
-  void launchUpdate() {
-    _appUpdateService.launchUpdate();
+  void launchUpdate({required bool updateInBackground}) {
+    _appUpdateService.launchUpdate(updateInBackground: updateInBackground);
   }
 
   @override

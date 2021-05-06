@@ -90,7 +90,10 @@ class _HomeState extends State<Home> {
           children: [
             Text(isMandatory ? "Update required!" : "Optional update"),
             TextButton(
-              onPressed: () => widget.appVersioning.launchUpdate(),
+              onPressed: () {
+                widget.appVersioning
+                    .launchUpdate(updateInBackground: !isMandatory);
+              },
               child: Text("OK"),
             )
           ],

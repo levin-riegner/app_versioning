@@ -36,7 +36,7 @@ abstract class AppVersioning {
 
   Future<AppUpdateInfo> getAppUpdateInfo();
 
-  void launchUpdate();
+  void launchUpdate({required bool updateInBackground});
 
   void dispose();
 
