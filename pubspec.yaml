@@ -16,16 +16,16 @@ dependencies:
       url: git@github.com:levin-riegner/lr-core.git
       ref: release/1.0.0
   # App package info
-  package_info: 2.0.0
+  package_info_plus: ^1.0.2
   # URL Launcher
-  url_launcher: 6.0.3
+  url_launcher: ^6.0.3
   # Shared Preferences
-  shared_preferences: 2.0.5
+  shared_preferences: ^2.0.5
   # Firebase Remote Config
-  firebase_remote_config: 0.10.0-dev.2
+  firebase_remote_config: ^0.10.0+1
   # In-app update
-  in_app_update: 2.0.0 # Android
-  upgrader: 3.2.1 # iOS
+  in_app_update: ^2.0.0 # Android
+  upgrader: ^3.2.1 # iOS
 
 dev_dependencies:
   flutter_test:
