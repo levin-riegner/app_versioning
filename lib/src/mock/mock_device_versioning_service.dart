@@ -14,7 +14,7 @@ class MockDeviceVersioningService extends DeviceVersioningService {
   }
 
   @override
-  void launchUpdate() {
+  void launchUpdate({required bool updateInBackground}) {
     // Do nothing
   }
 }

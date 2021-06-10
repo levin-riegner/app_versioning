@@ -1,10 +1,11 @@
 import 'dart:io';
 
+import 'package:in_app_update/in_app_update.dart' as iau;
 import 'package:lr_app_versioning/app_versioning.dart';
 import 'package:lr_app_versioning/src/device/config/update_config.dart';
 import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
 import 'package:lr_app_versioning/src/util/version.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DefaultDeviceVersioningService extends DeviceVersioningService {
@@ -25,19 +26,29 @@ class DefaultDeviceVersioningService extends DeviceVersioningService {
     }
   }
 
+  /// Launches App Update.
   @override
-  void launchUpdate() {
-    if (config.appStoreAppId != null && Platform.isIOS) {
-      final appStoreUrl =
-          "https://apps.apple.com/us/app/id${config.appStoreAppId}";
-      launch(appStoreUrl);
-    } else if (config.playStoreAppId != null && Platform.isAndroid) {
-      // TODO: Consider using In-App Update
-      final playStoreUrl =
-          "https://play.google.com/store/apps/details?id=${config.playStoreAppId}";
-      launch(playStoreUrl);
-    } else {
-      print("Unsupported platform or missing config parameters: $config");
+  void launchUpdate({required bool updateInBackground}) async {
+    try {
+      if (config.appStoreAppId != null && Platform.isIOS) {
+        // Open AppStore URL
+        final appStoreUrl =
+            "https://apps.apple.com/${config.appstoreCountryCode}/app/id${config.appStoreAppId}";
+        launch(appStoreUrl);
+      } else if (config.playStoreAppId != null && Platform.isAndroid) {
+        // Use Android In-App Update
+        if (updateInBackground) {
+          await iau.InAppUpdate.startFlexibleUpdate();
+          await iau.InAppUpdate.completeFlexibleUpdate();
+        } else {
+          await iau.InAppUpdate.performImmediateUpdate();
+        }
+      } else {
+        print("Unsupported platform or missing config parameters: $config");
+      }
+    } catch (e) {
+      print("Error launching app update");
+      print(e);
     }
   }
 }
