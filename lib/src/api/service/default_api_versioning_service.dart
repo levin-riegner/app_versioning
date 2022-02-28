@@ -1,10 +1,7 @@
 import 'dart:convert';
 
 import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:lr_app_versioning/src/api/config/api_config.dart';
 import 'package:lr_app_versioning/src/api/model/api_versioning.dart';
-import 'package:lr_app_versioning/src/model/minimum_versions.dart';
-import 'package:lr_app_versioning/src/service/minimum_versioning_service.dart';
 import 'package:lr_core/lr_core.dart';
 
 class DefaultApiVersioningService extends MinimumVersioningService {

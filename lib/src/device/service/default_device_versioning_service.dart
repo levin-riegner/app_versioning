@@ -2,9 +2,6 @@ import 'dart:io';
 
 import 'package:in_app_update/in_app_update.dart' as iau;
 import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:lr_app_versioning/src/device/config/update_config.dart';
-import 'package:lr_app_versioning/src/service/device_versioning_service.dart';
-import 'package:lr_app_versioning/src/util/version.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
