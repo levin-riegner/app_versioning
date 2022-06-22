@@ -7,7 +7,7 @@ class DefaultFirebaseVersioningService extends MinimumVersioningService {
 
   DefaultFirebaseVersioningService(this.remoteConfigKeys);
 
-  /// Get api versioning. Throws [FailedToGetMinimumVersioning].
+  /// Get minimum remote config versions. Throws [FailedToGetMinimumVersioning].
   @override
   Future<MinimumVersions> getMinimumVersions() async {
     final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;

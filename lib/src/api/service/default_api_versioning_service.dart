@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:http/http.dart';
 import 'package:lr_app_versioning/app_versioning.dart';
 import 'package:lr_app_versioning/src/api/model/api_versioning.dart';
-import 'package:lr_core/lr_core.dart';
 
 class DefaultApiVersioningService extends MinimumVersioningService {
   final ApiConfig config;
@@ -13,14 +14,15 @@ class DefaultApiVersioningService extends MinimumVersioningService {
   @override
   Future<MinimumVersions> getMinimumVersions() async {
     // Setup API Client
-    final client = ApiClient(
-      contentType: 'application/json',
-    );
+    final client = Client();
     // Send request
     try {
       final response = await client.get(
         Uri.parse(config.endpoints.minimumVersioningEndpoint),
-        headers: {'Accept': 'application/json'},
+        headers: {
+          HttpHeaders.acceptHeader: 'application/json',
+          HttpHeaders.contentTypeHeader: 'application/json',
+        },
       );
       // Parse response
       final json = jsonDecode(response.body);
@@ -30,12 +32,8 @@ class DefaultApiVersioningService extends MinimumVersioningService {
         ios: minimumVersioning.minimumIosVersion,
         android: minimumVersioning.minimumAndroidVersion,
       );
-    } on ClientApiClientException catch (e) {
-      throw FailedToGetMinimumVersions(error: e.body);
-    } on ServerApiClientException catch (e) {
-      throw FailedToGetMinimumVersions(error: e.body);
-    } on UnknownApiClientException {
-      throw FailedToGetMinimumVersions(error: null);
+    } catch (e) {
+      throw FailedToGetMinimumVersions(error: e.toString());
     } finally {
       client.close();
     }

@@ -38,8 +38,6 @@ abstract class AppVersioning {
 
   void launchUpdate({required bool updateInBackground});
 
-  void dispose();
-
   factory AppVersioning.apiService({
     required ApiConfig apiConfig,
     required UpdateConfig updateConfig,

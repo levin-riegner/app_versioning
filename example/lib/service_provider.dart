@@ -12,6 +12,7 @@ abstract class ServiceProvider {
       updateConfig: UpdateConfig(
         appStoreAppId: "1234567890",
         playStoreAppId: "org.example.versioning",
+        appstoreCountryCode: "US",
       ),
     );
   }

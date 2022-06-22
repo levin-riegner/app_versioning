@@ -10,7 +10,7 @@ class DefaultDeviceVersioningService extends DeviceVersioningService {
 
   DefaultDeviceVersioningService(this.config);
 
-  /// Get api versioning. Throws [FailedToGetCurrentVersion].
+  /// Get current version. Throws [FailedToGetCurrentVersion].
   @override
   Future<Version> getCurrentVersion() async {
     final packageInfo = await PackageInfo.fromPlatform();
@@ -31,7 +31,7 @@ class DefaultDeviceVersioningService extends DeviceVersioningService {
         // Open AppStore URL
         final appStoreUrl =
             "https://apps.apple.com/${config.appstoreCountryCode}/app/id${config.appStoreAppId}";
-        launch(appStoreUrl);
+        launchUrl(Uri.parse(appStoreUrl));
       } else if (config.playStoreAppId != null && Platform.isAndroid) {
         // Use Android In-App Update
         if (updateInBackground) {

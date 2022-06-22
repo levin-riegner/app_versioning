@@ -69,9 +69,6 @@ class DefaultAppVersioning implements AppVersioning {
     _appUpdateService.launchUpdate(updateInBackground: updateInBackground);
   }
 
-  @override
-  void dispose() {}
-
   // region Private
   Future<Version> _getMinimumVersion() async {
     // Get Minimum Versioning
