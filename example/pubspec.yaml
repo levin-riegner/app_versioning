@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  lr_app_versioning:
+  app_versioning:
     path: ../
 
 dev_dependencies:

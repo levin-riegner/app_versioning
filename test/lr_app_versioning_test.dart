@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:lr_app_versioning/src/mock/mock_device_versioning_service.dart';
-import 'package:lr_app_versioning/src/mock/mock_minimum_versioning_service.dart';
-import 'package:lr_app_versioning/src/mock/mock_optional_update_service.dart';
+import 'package:app_versioning/app_versioning.dart';
+import 'package:app_versioning/src/mock/mock_device_versioning_service.dart';
+import 'package:app_versioning/src/mock/mock_minimum_versioning_service.dart';
+import 'package:app_versioning/src/mock/mock_optional_update_service.dart';
 
 void main() {
   test('Mandatory Update Required', () async {

@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:lr_app_versioning/src/api/model/api_versioning.dart';
+import 'package:app_versioning/app_versioning.dart';
+import 'package:app_versioning/src/api/model/api_versioning.dart';
 
 class DefaultApiVersioningService extends MinimumVersioningService {
   final ApiConfig config;

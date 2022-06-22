@@ -1,4 +1,4 @@
-# lr_app_versioning
+# app_versioning
 
 L+R app versioning package
 
@@ -18,4 +18,3 @@ This plugin currently supports 2 different backends
 1. **API**: An arbitrary URL endpoint that returns the minimum versions JSON.
 2. **Firebase Remote Config**: Key/value pairs with the minimum versions specified on Firebase.
     > This requires the project to include and set up Firebase.
-

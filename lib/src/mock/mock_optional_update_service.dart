@@ -1,5 +1,5 @@
-import 'package:lr_app_versioning/src/service/optional_update_service.dart';
-import 'package:lr_app_versioning/src/util/version.dart';
+import 'package:app_versioning/src/service/optional_update_service.dart';
+import 'package:app_versioning/src/util/version.dart';
 
 class MockOptionalUpdateService implements OptionalUpdateService {
   final bool updateAvailable;

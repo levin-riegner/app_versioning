@@ -1,5 +1,5 @@
-name: lr_app_versioning
-description: L+R app versioning package
+name: app_versioning
+description: App versioning package
 version: 0.1.0
 publish_to: none
 

@@ -1,4 +1,4 @@
-import 'package:lr_app_versioning/src/util/version.dart';
+import 'package:app_versioning/src/util/version.dart';
 
 class ApiVersioning {
   final String? minimumIosVersionString;
