@@ -10,18 +10,18 @@ dependencies:
   flutter:
     sdk: flutter
   # App package info
-  package_info_plus: ^1.4.2
+  package_info_plus: ^1.4.3
   # URL Launcher
-  url_launcher: ^6.1.0
+  url_launcher: ^6.1.5
   # Shared Preferences
-  shared_preferences: ^2.0.5
+  shared_preferences: ^2.0.15
   # Firebase Remote Config
-  firebase_remote_config: ^2.0.5
+  firebase_remote_config: ^2.0.17
   # HTTP
-  http: 0.13.4
+  http: ^0.13.5
   # In-app update
   in_app_update: ^3.0.0 # Android
-  upgrader: ^3.14.0 # iOS
+  upgrader: ^4.6.1 # iOS
 
 dev_dependencies:
   flutter_test:
