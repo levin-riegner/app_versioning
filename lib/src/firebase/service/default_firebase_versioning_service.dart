@@ -1,13 +1,13 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:lr_app_versioning/app_versioning.dart';
+import 'package:app_versioning/app_versioning.dart';
 
 class DefaultFirebaseVersioningService extends MinimumVersioningService {
   final RemoteConfigKeys remoteConfigKeys;
 
   DefaultFirebaseVersioningService(this.remoteConfigKeys);
 
-  /// Get api versioning. Throws [FailedToGetMinimumVersioning].
+  /// Get minimum remote config versions. Throws [FailedToGetMinimumVersioning].
   @override
   Future<MinimumVersions> getMinimumVersions() async {
     final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;

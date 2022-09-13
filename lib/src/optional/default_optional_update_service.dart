@@ -3,9 +3,9 @@ library optional_update;
 import 'dart:io';
 
 import 'package:in_app_update/in_app_update.dart' as iau;
-import 'package:lr_app_versioning/src/device/config/update_config.dart';
-import 'package:lr_app_versioning/src/service/optional_update_service.dart';
-import 'package:lr_app_versioning/src/util/version.dart';
+import 'package:app_versioning/src/device/config/update_config.dart';
+import 'package:app_versioning/src/service/optional_update_service.dart';
+import 'package:app_versioning/src/util/version.dart';
 import 'package:upgrader/upgrader.dart';
 
 export 'default_optional_update_service.dart';

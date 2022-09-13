@@ -1,4 +1,4 @@
-import 'package:lr_app_versioning/app_versioning.dart';
+import 'package:app_versioning/app_versioning.dart';
 
 class AppUpdateInfo {
   final Version? currentVersion;

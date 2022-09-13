@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lr_app_versioning/app_versioning.dart';
+import 'package:app_versioning/app_versioning.dart';
 
 import 'service_provider.dart';
 

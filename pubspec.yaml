@@ -1,6 +1,6 @@
-name: lr_app_versioning
-description: L+R app versioning package
-version: 0.1.0
+name: app_versioning
+description: App versioning package
+version: 1.0.2
 publish_to: none
 
 environment:
@@ -9,23 +9,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # L&R core
-  lr_core:
-    git:
-      url: git@github.com:levin-riegner/lr-core.git
-      ref: release/1.0.0
   # App package info
-  package_info_plus: ^1.0.2
+  package_info_plus: ^1.4.3
   # URL Launcher
-  url_launcher: ^6.0.3
+  url_launcher: ^6.1.5
   # Shared Preferences
-  shared_preferences: ^2.0.5
+  shared_preferences: ^2.0.15
   # Firebase Remote Config
-  firebase_remote_config: ^2.0.2
+  firebase_remote_config: ^2.0.17
+  # HTTP
+  http: ^0.13.5
   # In-app update
   in_app_update: ^3.0.0 # Android
-  upgrader: ^3.2.1 # iOS
+  upgrader: ^4.6.1 # iOS
 
 dev_dependencies:
   flutter_test:

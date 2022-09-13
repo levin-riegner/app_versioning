@@ -1,3 +1,9 @@
-## [0.0.1] - TODO: Add release date.
+# Changelog
 
-* TODO: Describe initial release.
+All notable changes to this project will be documented in this file.
+
+## 1.0.2
+
+### Added
+
+- Public Release.

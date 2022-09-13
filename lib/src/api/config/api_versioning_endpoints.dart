@@ -1,17 +1,15 @@
-import 'package:lr_core/lr_core.dart';
-
-class ApiVersioningEndpoints extends ApiEndpoints {
+class ApiVersioningEndpoints {
+  final String _baseUrl;
   final String _minimumVersioningEndpoint;
 
   /// Default endpoints can be overridden by passing custom endpoints
   ApiVersioningEndpoints(
-    String baseUrl, {
+    this._baseUrl, {
     String minimumVersioningEndpoint = "api/api-compatibility",
-  })  : _minimumVersioningEndpoint = minimumVersioningEndpoint,
-        super(baseUrl);
+  }) : _minimumVersioningEndpoint = minimumVersioningEndpoint;
 
   String get minimumVersioningEndpoint =>
-      url(endpoint: _minimumVersioningEndpoint);
+      "$_baseUrl/$_minimumVersioningEndpoint";
 
   @override
   String toString() {

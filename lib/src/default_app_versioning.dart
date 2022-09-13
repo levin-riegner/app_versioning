@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:lr_app_versioning/app_versioning.dart';
-import 'package:lr_app_versioning/src/service/optional_update_service.dart';
-import 'package:lr_app_versioning/src/util/version_tracker.dart';
+import 'package:app_versioning/app_versioning.dart';
+import 'package:app_versioning/src/service/optional_update_service.dart';
+import 'package:app_versioning/src/util/version_tracker.dart';
 
 class DefaultAppVersioning implements AppVersioning {
   final MinimumVersioningService _minimumVersioningService;
@@ -68,9 +68,6 @@ class DefaultAppVersioning implements AppVersioning {
   void launchUpdate({required bool updateInBackground}) {
     _appUpdateService.launchUpdate(updateInBackground: updateInBackground);
   }
-
-  @override
-  void dispose() {}
 
   // region Private
   Future<Version> _getMinimumVersion() async {
