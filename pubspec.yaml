@@ -1,6 +1,6 @@
 name: app_versioning
 description: App versioning package
-version: 0.1.0
+version: 1.0.2
 publish_to: none
 
 environment:
