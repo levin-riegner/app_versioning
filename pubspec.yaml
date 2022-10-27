@@ -1,6 +1,6 @@
 name: app_versioning
 description: App versioning package
-version: 1.0.2
+version: 1.0.3
 publish_to: none
 
 environment:
@@ -16,7 +16,7 @@ dependencies:
   # Shared Preferences
   shared_preferences: ^2.0.15
   # Firebase Remote Config
-  firebase_remote_config: ^2.0.17
+  firebase_remote_config: ^3.0.3
   # HTTP
   http: ^0.13.5
   # In-app update
