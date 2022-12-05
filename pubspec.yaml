@@ -1,6 +1,6 @@
 name: app_versioning
 description: App versioning package
-version: 1.0.3
+version: 1.0.4
 publish_to: none
 
 environment:
@@ -10,18 +10,18 @@ dependencies:
   flutter:
     sdk: flutter
   # App package info
-  package_info_plus: ^1.4.3
+  package_info_plus: ^3.0.2
   # URL Launcher
-  url_launcher: ^6.1.5
+  url_launcher: ^6.1.7
   # Shared Preferences
   shared_preferences: ^2.0.15
   # Firebase Remote Config
-  firebase_remote_config: ^3.0.3
+  firebase_remote_config: ^3.0.6
   # HTTP
   http: ^0.13.5
   # In-app update
-  in_app_update: ^3.0.0 # Android
-  upgrader: ^4.6.1 # iOS
+  in_app_update: ^4.0.1 # Android
+  upgrader: ^5.0.0 # iOS
 
 dev_dependencies:
   flutter_test:
