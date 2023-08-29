@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:app_versioning/app_versioning.dart';
+import 'package:flutter/material.dart';
 
 import 'service_provider.dart';
 
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Text(
                       'Current Versioning Values',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
                       'Current Version: ${appUpdateInfo?.currentVersion}',
@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Text(
                       'Version Tracking Status',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
                       'Is first launch ever: ${widget.appVersioning.tracker.isFirstLaunchEver}',
