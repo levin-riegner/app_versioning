@@ -4,7 +4,7 @@ version: 1.0.5
 publish_to: none
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=3.10.0" # upgrader package requires this flutter min version
 
 dependencies:
