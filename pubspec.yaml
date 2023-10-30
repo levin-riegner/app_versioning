@@ -14,11 +14,11 @@ screenshots:
   - description: "Displays the version tracking values."
     path: doc/static/screenshot_tracker.png
 topics:
-  - app updates
-  - app version
+  - in-app-updates
+  - version
   - versioning
-  - version tracker
-  - version bomb
+  - version-tracker
+  - version-bomb
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
