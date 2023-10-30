@@ -72,7 +72,14 @@ class _HomeState extends State<Home> {
 
     // Check Update Available
     if (appUpdateInfo.isUpdateAvailable) {
-      _showUpdatePopup(appUpdateInfo.updateType == AppUpdateType.Mandatory);
+      switch (appUpdateInfo.updateType) {
+        case AppUpdateType.Optional:
+          _showUpdatePopup(forceUpdate: false);
+          break;
+        case AppUpdateType.Mandatory:
+          _showUpdatePopup(forceUpdate: true);
+          break;
+      }
     }
   }
 
@@ -80,18 +87,18 @@ class _HomeState extends State<Home> {
     await widget.appVersioning.tracker.track();
   }
 
-  _showUpdatePopup(bool isMandatory) {
+  _showUpdatePopup({required bool forceUpdate}) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => Container(
         child: Column(
           children: [
-            Text(isMandatory ? "Update required!" : "Optional update"),
+            Text(forceUpdate ? "Update required!" : "Optional update"),
             TextButton(
               onPressed: () {
                 widget.appVersioning
-                    .launchUpdate(updateInBackground: !isMandatory);
+                    .launchUpdate(updateInBackground: !forceUpdate);
               },
               child: Text("OK"),
             )
