@@ -1,0 +1,27 @@
+{
+  "parameters": {
+    "minimumAndroidVersion": {
+      "defaultValue": {
+        "value": "0.0.0"
+      },
+      "description": "Minimum Android version supported. Users on older versions will be forced to update.",
+      "valueType": "STRING"
+    },
+    "minimumIosVersion": {
+      "defaultValue": {
+        "value": "0.0.0"
+      },
+      "description": "Minimum iOS version supported. Users on older versions will be forced to update.",
+      "valueType": "STRING"
+    }
+  },
+  "version": {
+    "versionNumber": "1",
+    "updateTime": "2023-10-16T11:39:12.146888Z",
+    "updateUser": {
+      "email": "alexq@levinriegner.com"
+    },
+    "updateOrigin": "CONSOLE",
+    "updateType": "INCREMENTAL_UPDATE"
+  }
+}
