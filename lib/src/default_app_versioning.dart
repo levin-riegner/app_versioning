@@ -13,7 +13,7 @@ class DefaultAppVersioning implements AppVersioning {
     required MinimumVersioningService minimumVersioningService,
     required DeviceVersioningService appUpdateService,
     required OptionalUpdateService optionalUpdateService,
-  })   : _minimumVersioningService = minimumVersioningService,
+  })  : _minimumVersioningService = minimumVersioningService,
         _appUpdateService = appUpdateService,
         _optionalUpdateService = optionalUpdateService;
 
