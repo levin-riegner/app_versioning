@@ -61,20 +61,20 @@ class Version implements Comparable<Version> {
   List<String> get preRelease => List<String>.from(_preRelease);
 
   /// Determines whether the left-hand [Version] represents a lower precedence than the right-hand [Version].
-  bool operator <(dynamic o) => o is Version && _compare(this, o) < 0;
+  bool operator <(Object o) => o is Version && _compare(this, o) < 0;
 
   /// Determines whether the left-hand [Version] represents an equal or lower precedence than the right-hand [Version].
-  bool operator <=(dynamic o) => o is Version && _compare(this, o) <= 0;
+  bool operator <=(Object o) => o is Version && _compare(this, o) <= 0;
 
   /// Determines whether the left-hand [Version] represents an equal precedence to the right-hand [Version].
   @override
-  bool operator ==(dynamic o) => o is Version && _compare(this, o) == 0;
+  bool operator ==(Object o) => o is Version && _compare(this, o) == 0;
 
   /// Determines whether the left-hand [Version] represents a greater precedence than the right-hand [Version].
-  bool operator >(dynamic o) => o is Version && _compare(this, o) > 0;
+  bool operator >(Object o) => o is Version && _compare(this, o) > 0;
 
   /// Determines whether the left-hand [Version] represents an equal or greater precedence than the right-hand [Version].
-  bool operator >=(dynamic o) => o is Version && _compare(this, o) >= 0;
+  bool operator >=(Object o) => o is Version && _compare(this, o) >= 0;
 
   @override
   int compareTo(Version other) {
