@@ -1,7 +1,7 @@
 name: app_versioning
 description: >-
   Keep track of app versions and prompt users to update the app whenever there are new updates available.
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/levin-riegner/app_versioning
 repository: https://github.com/levin-riegner/app_versioning
 documentation: https://github.com/levin-riegner/app_versioning
@@ -21,8 +21,7 @@ topics:
   - version-bomb
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
-  flutter: ">=3.10.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:

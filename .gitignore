@@ -40,3 +40,6 @@ coverage
 
 # Fluter version management
 **/.fvm/flutter_sdk
+
+# FVM Version Cache
+.fvm/

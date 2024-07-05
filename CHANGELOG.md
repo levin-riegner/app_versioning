@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.1
+
+### Changed
+
+- Updated dependencies for Apple Privacy Transparency.
+- Updated min Dart SDK to 3.3.0
+
 ## 1.2.0
 
 ### Changed
