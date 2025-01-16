@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.2
+
+### Changed
+
+- Updated all dependencies to latest versions.
+
 ## 1.2.1
 
 ### Changed
