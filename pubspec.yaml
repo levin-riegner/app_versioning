@@ -33,7 +33,7 @@ dependencies:
   # Shared Preferences
   shared_preferences: ^2.3.5
   # Firebase Remote Config
-  firebase_remote_config: ^5.3.0
+  firebase_remote_config: ^6.1.0
   # HTTP
   http: ^1.2.1
   # In-app update
