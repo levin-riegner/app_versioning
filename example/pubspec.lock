@@ -5,17 +5,17 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "27899c95f9e7ec06c8310e6e0eac967707714b9f1450c4a58fa00ca011a4a8ae"
+      sha256: f871a7d1b686bea1f13722aa51ab31554d05c81f47054d6de48cc8c45153508b
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.49"
+    version: "1.3.63"
   app_versioning:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.2.1"
+    version: "1.2.2"
   async:
     dependency: transitive
     description:
@@ -108,50 +108,50 @@ packages:
     dependency: transitive
     description:
       name: firebase_core
-      sha256: "0307c1fde82e2b8b97e0be2dab93612aff9a72f31ebe9bfac66ed8b37ef7c568"
+      sha256: "132e1c311bc41e7d387b575df0aacdf24efbf4930365eb61042be5bde3978f03"
       url: "https://pub.dev"
     source: hosted
-    version: "3.10.0"
+    version: "4.2.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
-      sha256: d7253d255ff10f85cfd2adaba9ac17bae878fa3ba577462451163bd9f1d1f0bf
+      sha256: cccb4f572325dc14904c02fcc7db6323ad62ba02536833dddb5c02cac7341c64
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.0"
+    version: "6.0.2"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
-      sha256: fbc008cf390d909b823763064b63afefe9f02d8afdb13eb3f485b871afee956b
+      sha256: ecde2def458292404a4fcd3731ee4992fd631a0ec359d2d67c33baa8da5ec8ae
       url: "https://pub.dev"
     source: hosted
-    version: "2.19.0"
+    version: "3.2.0"
   firebase_remote_config:
     dependency: transitive
     description:
       name: firebase_remote_config
-      sha256: "1ddeee5055a6fd2295429b8cc3019d5f422c60c77fd22156a789aa6446645595"
+      sha256: "0f419efb00503e285bc7000e0e5dfc1dca9f390ea004091a01d35a798b22923c"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.0"
+    version: "6.1.0"
   firebase_remote_config_platform_interface:
     dependency: transitive
     description:
       name: firebase_remote_config_platform_interface
-      sha256: a17a43aa27f860a4e13c2cea11f66d71584976c5b9aa59b0e1720b8435d14764
+      sha256: e6513edd1d58079f5fe335858d2febc6baadad77a9e8852401ac48af4344b5b4
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.48"
+    version: "2.0.4"
   firebase_remote_config_web:
     dependency: transitive
     description:
       name: firebase_remote_config_web
-      sha256: a85a95d6cc0692b82663acf3b0c312f219c55fbdf8ce997922ab862e64945415
+      sha256: "8ab5354403d2221873ed5870c6c9a0370819d69dc7bdfc03a445cde32e841de2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.6"
+    version: "1.9.0"
   flutter:
     dependency: "direct main"
     description: flutter
