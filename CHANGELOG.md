@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.3
+
+### Changed
+
+- Updated Firebase Remote Config to latest version.
+
 ## 1.2.2
 
 ### Changed
