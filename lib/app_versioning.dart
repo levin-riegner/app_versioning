@@ -16,6 +16,9 @@ import 'package:app_versioning/src/service/minimum_versioning_service.dart';
 import 'package:app_versioning/src/service/optional_update_service.dart';
 import 'package:app_versioning/src/util/version.dart';
 import 'package:app_versioning/src/util/version_tracker.dart';
+import 'package:app_versioning/src/mock/mock_minimum_versioning_service.dart';
+import 'package:app_versioning/src/mock/mock_device_versioning_service.dart';
+import 'package:app_versioning/src/mock/mock_optional_update_service.dart';
 
 // Library Export Classes
 export 'src/api/exports.dart';
@@ -70,6 +73,25 @@ abstract class AppVersioning {
       minimumVersioningService: minimumVersioningService,
       appUpdateService: appUpdateService,
       optionalUpdateService: optionalUpdateService,
+    );
+  }
+
+  factory AppVersioning.mockService({
+    String minimumVersion = "1.0.0",
+    String currentVersion = "1.1.0",
+    bool optionalUpdateAvailable = false,
+  }) {
+    return DefaultAppVersioning(
+      minimumVersioningService: MockMinimumVersioningService(
+        minimumIosVersion: minimumVersion,
+        minimumAndroidVersion: minimumVersion,
+      ),
+      appUpdateService: MockDeviceVersioningService(
+        currentVersionString: currentVersion,
+      ),
+      optionalUpdateService: MockOptionalUpdateService(
+        updateAvailable: optionalUpdateAvailable,
+      ),
     );
   }
 }
