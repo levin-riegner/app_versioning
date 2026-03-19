@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.3.0
+
+### Changed
+
+- Widened `package_info_plus` constraint to support both v8 and v9.
+
 ## 1.2.3
 
 ### Changed
