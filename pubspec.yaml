@@ -1,7 +1,7 @@
 name: app_versioning
 description: >-
   Keep track of app versions and prompt users to update the app whenever there are new updates available.
-version: 1.4.0
+version: 1.5.0
 homepage: https://github.com/levin-riegner/app_versioning
 repository: https://github.com/levin-riegner/app_versioning
 documentation: https://github.com/levin-riegner/app_versioning
@@ -33,11 +33,11 @@ dependencies:
   # Shared Preferences
   shared_preferences: ^2.3.5
   # Firebase Remote Config
-  firebase_remote_config: ^6.1.0
+  firebase_remote_config: ">=6.1.0 <8.0.0"
   # HTTP
   http: ^1.2.1
   # In-app update
-  in_app_update: ^4.2.3 # Android
+  in_app_update: ">=4.2.3 <6.0.0" # Android
   upgrader: ^13.1.0 # iOS
 
 dev_dependencies:

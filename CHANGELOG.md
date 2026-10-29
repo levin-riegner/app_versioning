@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.5.0
+
+### Changed
+
+- Widened `firebase_remote_config` constraint to support v6 and v7, so consumers can adopt `firebase_core` v5.
+- Widened `in_app_update` constraint to support v4 and v5. v5 uses Flutter's built-in Kotlin and requires Flutter 3.44 or later.
+
 ## 1.4.0
 
 ### Changed
