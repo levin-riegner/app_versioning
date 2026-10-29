@@ -79,6 +79,8 @@ class _HomeState extends State<Home> {
         case AppUpdateType.Mandatory:
           _showUpdatePopup(forceUpdate: true);
           break;
+        case null:
+          break;
       }
     }
   }
