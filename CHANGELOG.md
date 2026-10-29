@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Widened `firebase_remote_config` constraint to support v6 and v7, so consumers can adopt `firebase_core` v5.
 - Widened `in_app_update` constraint to support v4 and v5. v5 uses Flutter's built-in Kotlin and requires Flutter 3.44 or later.
+- `firebase_remote_config` v7 requires Android minSdk 24 and Firebase iOS SDK 13 (iOS 15 or later).
 
 ## 1.4.0
 
